@@ -152,7 +152,7 @@ section,
 /* Background hero variant */
 .hero--bg {
     position: relative;
-    min-height: clamp(420px, 70vh, 720px);
+    min-height: calc(100vh - var(--header-offset));
     display: grid;
     place-items: center;
     color: #fff;
@@ -182,6 +182,31 @@ section,
 .hero--bg .hero__text p { color: #e9eef6; opacity: .95; }
 .hero--bg .hero__cta { justify-content: center; }
 .hero--bg .hero__badges { justify-content: center; }
+
+/* Ribbon below hero */
+.ribbon { position: relative; padding: 0; isolation: isolate; }
+.ribbon .container { width: 100%; }
+.ribbon__inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: clamp(18px, 3.2vw, 30px) 18px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    background: linear-gradient(90deg, rgba(0,143,204,0.12), rgba(1,48,167,0.10), rgba(18,215,255,0.10));
+    overflow: hidden;
+}
+.ribbon__glow { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(1200px 200px at var(--x, 0%) 50%, rgba(18,215,255,0.18), transparent 60%); mix-blend-mode: screen; animation: ribbon-pan 8s linear infinite; opacity: .85; }
+.ribbon__text { margin: 0; color: #eaf2fb; text-align: center; font-size: clamp(14px, 2vw, 16px); }
+.ribbon__cta { white-space: nowrap; }
+.ribbon__chars { position: relative; display: flex; align-items: center; justify-content: center; gap: 0.16em; color: #eaf2fb; font-weight: 700; font-size: clamp(30px, 7.6vw, 64px); letter-spacing: 0.04em; perspective: 900px; transform-style: preserve-3d; text-transform: uppercase; font-family: 'Outfit', 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+.ribbon__char { display: inline-block; will-change: transform; transform-origin: center; opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+    .ribbon__glow { animation: none; }
+}
+@keyframes ribbon-pan { 0% { --x: 0%; } 100% { --x: 100%; } }
 
 /* Cards */
 .grid { display: grid; gap: 20px; }

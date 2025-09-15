@@ -1,5 +1,5 @@
 <?php require __DIR__ . '/includes/lang.php'; ?>
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="<?php echo htmlspecialchars($lang); ?>">
 <head>
     <meta charset="UTF-8" />
@@ -8,7 +8,7 @@
     <meta name="description" content="<?php echo htmlspecialchars($tr['desc']); ?>" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/styles.css" />
     <link rel="canonical" href="/" />
 </head>
@@ -31,6 +31,14 @@
                         <span class="badge"><span class="badge__dot"></span><?php echo htmlspecialchars($tr['badge3']); ?></span>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- Ribbon under hero -->
+        <section class="ribbon reveal" aria-label="Aviso destacado">
+            <div class="container ribbon__inner">
+                <div class="ribbon__glow" aria-hidden="true"></div>
+                <div id="ribbonText" class="ribbon__chars" aria-label="LISTO PARA TU CAMBIO?"></div>
             </div>
         </section>
 

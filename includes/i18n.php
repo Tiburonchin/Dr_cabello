@@ -32,6 +32,8 @@ return [
         'li1' => 'Atención de lunes a sábado',
         'li2' => 'Consulta presencial y virtual',
         'li3' => 'Financiamiento disponible',
+    // Ribbon under hero
+    'ribbon_text' => 'Agenda hoy y recibe una evaluación gratuita. Tu cambio empieza aquí.',
         'nombre' => 'Nombre completo',
         'email' => 'Email',
         'tel' => 'Teléfono',
@@ -106,6 +108,8 @@ return [
         'li1' => 'Open Monday to Saturday',
         'li2' => 'On-site and virtual consultation',
         'li3' => 'Financing available',
+    // Ribbon under hero
+    'ribbon_text' => 'Book today and get a free evaluation. Your change starts here.',
         'nombre' => 'Full name',
         'email' => 'Email',
         'tel' => 'Phone',

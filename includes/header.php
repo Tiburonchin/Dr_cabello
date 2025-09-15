@@ -42,7 +42,7 @@
     </div>
     <div class="container header__bar">
     <a href="index.php?lang=<?php echo htmlspecialchars(isset($lang)?$lang:'es'); ?>" class="brand" aria-label="<?php echo isset($tr['brand_home_aria']) ? htmlspecialchars($tr['brand_home_aria']) : 'Doctor Cabello inicio'; ?>">
-            <img class="brand__img" src="assets/img/logoA.svg" alt="Doctor Cabello" onerror="this.onerror=null;this.src='assets/img/logoA.webp'" />
+            <img class="brand__img" src="assets/img/logoA.webp" alt="Doctor Cabello" />
         </a>
     <nav class="nav" aria-label="<?php echo isset($tr['nav_aria']) ? htmlspecialchars($tr['nav_aria']) : 'Principal'; ?>">
             <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu"><?php echo isset($tr['menu']) ? htmlspecialchars($tr['menu']) : 'Menú'; ?></button>

@@ -76,6 +76,105 @@ if (navToggle && navMenu) {
 	window.addEventListener('resize', parallax);
 	parallax();
 
+	// Ribbon scroll-based text animation (vanilla JS)
+	(function() {
+		const container = document.getElementById('ribbonText');
+		if (!container) return;
+		const phrase = 'LISTO PARA TU CAMBIO?';
+		const chars = Array.from(phrase);
+		container.innerHTML = '';
+		chars.forEach((ch, i) => {
+			const span = document.createElement('span');
+			span.className = 'ribbon__char';
+			span.textContent = ch;
+			// add spacing for spaces
+			if (ch === ' ') span.style.width = '0.5em';
+			container.appendChild(span);
+		});
+
+		const elements = Array.from(container.children);
+		const centerIndex = Math.floor(elements.length / 2);
+
+		// Progress smoothing with rAF + momentum for fluid wheel scrolling
+		let smoothed = 0; // smoothed progress 0..1
+		let lastTarget = 0;
+		let momentum = 0;
+		let active = false;
+		let running = false;
+
+		const SMOOTH = 0.12;       // lower = more smoothing (slower to target)
+		const INJECT = 0.6;        // how much new velocity feeds momentum
+		const MOMENTUM_DAMP = 0.965; // closer to 1 = longer inertia
+		const EPS = 0.0003;
+
+		const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+		const rawProgress = () => {
+			const rect = container.getBoundingClientRect();
+			const vh = window.innerHeight || document.documentElement.clientHeight;
+			const start = vh * 0.15; // begin slightly below top
+			const mid = vh * 0.5;    // peak at middle of viewport
+			let prog = (mid - rect.top) / (mid - start);
+			return Math.min(1, Math.max(0, prog));
+		};
+
+		const render = (p) => {
+			elements.forEach((el, index) => {
+				const dist = index - centerIndex;
+				const x = (1 - p) * dist * 110;
+				const y = (1 - p) * Math.sign(dist) * Math.min(Math.abs(dist) * 12, 48);
+				const rotZ = (1 - p) * dist * 18;
+				const rotX = (1 - p) * (index % 2 === 0 ? 12 : -8);
+				const rotY = (1 - p) * (dist * 2);
+				const scale = 0.78 + p * 0.22;
+				el.style.transform = `translate3d(${x}px, ${y}px, 0) rotateX(${rotX}deg) rotateY(${rotY}deg) rotate(${rotZ}deg) scale(${scale})`;
+				el.style.opacity = String(p);
+			});
+		};
+
+		const tick = () => {
+			const target = rawProgress();
+			const v = target - lastTarget;
+			lastTarget = target;
+
+			// update momentum from input velocity and decay it
+			momentum = momentum * MOMENTUM_DAMP + v * INJECT;
+
+			// target plus momentum tail
+			let targetWithMomentum = target + momentum;
+			if (targetWithMomentum < 0) targetWithMomentum = 0;
+			if (targetWithMomentum > 1) targetWithMomentum = 1;
+
+			// smooth towards momentum-adjusted target
+			smoothed += (targetWithMomentum - smoothed) * SMOOTH;
+			const p = easeOutCubic(smoothed);
+			render(p);
+			if (active || Math.abs(target - smoothed) > EPS || Math.abs(momentum) > EPS) {
+				requestAnimationFrame(tick);
+			} else {
+				running = false;
+			}
+		};
+
+		const start = () => {
+			if (running) return;
+			running = true;
+			requestAnimationFrame(tick);
+		};
+
+		// Observe visibility to avoid unnecessary work
+		const obs = new IntersectionObserver((entries) => {
+			entries.forEach(e => {
+				active = e.isIntersecting;
+				if (active) start();
+			});
+		}, { threshold: [0, 0.15, 0.5, 1] });
+		obs.observe(container);
+
+		// Kick off initial render
+		start();
+	})();
+
 // Smooth scroll for internal links
 document.addEventListener('click', (e) => {
 	const a = e.target.closest('a[href^="#"]');
