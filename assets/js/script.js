@@ -1,3 +1,6 @@
+// Deprecated: All functionality moved to modular files.
+// See: theme.js, nav_header.js, animations.js, utils.js
+
 // Theme switcher
 (function() {
     const themeToggle = document.getElementById('themeToggle');
@@ -11,10 +14,10 @@
     // Apply initial theme
     if (currentTheme) {
         docEl.setAttribute('data-theme', currentTheme);
-    } else {
-        // Default to dark if no preference is stored
-        docEl.setAttribute('data-theme', 'dark');
-    }
+	} else {
+		// Default to light if no preference is stored (prioritize light version)
+		docEl.setAttribute('data-theme', 'light');
+	}
 
     themeToggle.addEventListener('click', () => {
         const currentTheme = docEl.getAttribute('data-theme');

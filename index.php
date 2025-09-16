@@ -210,7 +210,10 @@
 
     <?php include __DIR__ . '/includes/footer.php'; ?>
 
-        <script src="assets/js/script.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/nav_header.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/utils.js"></script>
         <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -241,9 +244,5 @@
     <a class="fab" href="https://wa.me/51999999999" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path fill="#0b0f14" d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.62-6.003C.122 5.281 5.403 0 12.057 0 18.71 0 24 5.281 24 11.834c0 6.552-5.29 11.833-11.943 11.833a11.95 11.95 0 01-6.002-1.62L.057 24z"/><path fill="#25D366" d="M20.52 17.352c-.297.835-1.472 1.528-2.04 1.627-.546.097-1.255.137-2.023-.127-.467-.154-1.068-.347-1.84-.675-3.239-1.395-5.345-4.655-5.507-4.873-.162-.217-1.316-1.75-1.316-3.34 0-1.59.835-2.377 1.13-2.704.296-.326.651-.408.869-.408.217 0 .434.002.625.012.201.01.469-.076.734.56.297.718 1.013 2.476 1.103 2.656.09.18.15.39.03.626-.12.236-.181.39-.356.601-.182.217-.38.487-.543.655-.177.177-.361.37-.156.726.206.355.916 1.508 1.97 2.44 1.354 1.166 2.496 1.53 2.852 1.708.356.177.563.148.773-.089.21-.236.89-1.035 1.13-1.39.237-.355.474-.296.792-.178.319.117 2.01.948 2.357 1.12.347.177.579.266.666.415.087.148.087.86-.21 1.696z"/></svg>
     </a>
-    <script>
-        // Inicio simple de animaciones cuando el DOM está listo
-        document.documentElement.classList.add('loaded');
-    </script>
     </body>
     </html>
