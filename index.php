@@ -42,35 +42,31 @@
             </div>
         </section>
 
-        <!-- Servicios -->
-    <section id="servicios" class="section reveal">
-            <div class="container">
-                <h2 class="section__title"><?php echo htmlspecialchars($tr['servicios_h2']); ?></h2>
-                <div class="grid cards">
-                    <article class="card">
-                        <div class="card__icon" aria-hidden="true">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M4 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                        </div>
-                        <h3><?php echo htmlspecialchars($tr['serv1']); ?></h3>
-                        <p><?php echo htmlspecialchars($tr['serv1_p']); ?></p>
-                    </article>
-                    <article class="card">
-                        <div class="card__icon" aria-hidden="true">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M8 12h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                        </div>
-                        <h3><?php echo htmlspecialchars($tr['serv2']); ?></h3>
-                        <p><?php echo htmlspecialchars($tr['serv2_p']); ?></p>
-                    </article>
-                    <article class="card">
-                        <div class="card__icon" aria-hidden="true">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                        </div>
-                        <h3><?php echo htmlspecialchars($tr['serv3']); ?></h3>
-                        <p><?php echo htmlspecialchars($tr['serv3_p']); ?></p>
-                    </article>
+        <!-- Sección Comparador Antes/Después -->
+    <section id="comparador" class="section section--xl reveal">
+            <div class="container compare">
+                <div class="compare__text">
+                    <h2 class="section__title"><?php echo htmlspecialchars($tr['comparador_h2'] ?? 'Tratamiento y resultados'); ?></h2>
+                    <p class="muted"><?php echo htmlspecialchars($tr['comparador_p'] ?? 'Abordamos la caída capilar con un plan integral: evaluamos la causa, definimos la técnica adecuada y acompañamos tu recuperación.'); ?></p>
+                    <ul class="list">
+                        <li><?php echo htmlspecialchars($tr['comparador_li1'] ?? 'Evaluación y diagnóstico precisos de la alopecia'); ?></li>
+                        <li><?php echo htmlspecialchars($tr['comparador_li2'] ?? 'Solución personalizada (FUE/DHI, PRP y terapias combinadas)'); ?></li>
+                        <li><?php echo htmlspecialchars($tr['comparador_li3'] ?? 'Beneficios: mayor densidad, naturalidad y confianza'); ?></li>
+                    </ul>
+                </div>
+                <div class="compare__media">
+                    <div class="ba" data-compare aria-label="Comparador de resultados">
+                        <span class="ba__tag ba__tag--before"><?php echo htmlspecialchars($tr['antes'] ?? 'Antes'); ?></span>
+                        <span class="ba__tag ba__tag--after"><?php echo htmlspecialchars($tr['despues'] ?? 'Después'); ?></span>
+                        <img class="ba__img ba__img--after" src="assets/img/img5.webp" alt="Después" />
+                        <img class="ba__img ba__img--before" src="assets/img/logoC.png" alt="Antes" />
+                        <div class="ba__divider" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Divisor del comparador"></div>
+                    </div>
                 </div>
             </div>
         </section>
+
+        
 
         <!-- Resultados -->
     <section id="resultados" class="section section--alt reveal">
@@ -151,6 +147,36 @@
             </div>
         </section>
 
+        <!-- Servicios (movido más abajo) -->
+    <section id="servicios" class="section reveal">
+            <div class="container">
+                <h2 class="section__title"><?php echo htmlspecialchars($tr['servicios_h2']); ?></h2>
+                <div class="grid cards">
+                    <article class="card">
+                        <div class="card__icon" aria-hidden="true">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 3v18M4 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                        </div>
+                        <h3><?php echo htmlspecialchars($tr['serv1']); ?></h3>
+                        <p><?php echo htmlspecialchars($tr['serv1_p']); ?></p>
+                    </article>
+                    <article class="card">
+                        <div class="card__icon" aria-hidden="true">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M8 12h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                        </div>
+                        <h3><?php echo htmlspecialchars($tr['serv2']); ?></h3>
+                        <p><?php echo htmlspecialchars($tr['serv2_p']); ?></p>
+                    </article>
+                    <article class="card">
+                        <div class="card__icon" aria-hidden="true">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                        </div>
+                        <h3><?php echo htmlspecialchars($tr['serv3']); ?></h3>
+                        <p><?php echo htmlspecialchars($tr['serv3_p']); ?></p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
         <!-- Contacto -->
     <section id="contacto" class="section section--accent reveal">
             <div class="container contact">
@@ -214,6 +240,7 @@
     <script src="assets/js/nav_header.js"></script>
     <script src="assets/js/animations.js"></script>
     <script src="assets/js/utils.js"></script>
+    <script src="assets/js/compare.js"></script>
         <script type="application/ld+json">
         {
             "@context": "https://schema.org",
