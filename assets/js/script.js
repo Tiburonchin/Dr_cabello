@@ -1,3 +1,29 @@
+// Theme switcher
+(function() {
+    const themeToggle = document.getElementById('themeToggle');
+    if (!themeToggle) return;
+
+    const docEl = document.documentElement;
+    const store = window.localStorage;
+    const key = 'theme';
+    const currentTheme = store.getItem(key);
+
+    // Apply initial theme
+    if (currentTheme) {
+        docEl.setAttribute('data-theme', currentTheme);
+    } else {
+        // Default to dark if no preference is stored
+        docEl.setAttribute('data-theme', 'dark');
+    }
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = docEl.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        docEl.setAttribute('data-theme', newTheme);
+        store.setItem(key, newTheme);
+    });
+})();
+
 // Navegación móvil
 const navToggle = document.getElementById('navToggle');
 const navMenu = document.getElementById('navMenu');
