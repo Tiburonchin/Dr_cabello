@@ -21,9 +21,9 @@
         return (x / r.width) * 100;
     };
 
-    const onDown = (e) => { active = true; setPos(posFromEvent(e)); e.preventDefault(); };
+    const onDown = (e) => { active = true; divider.classList.add('is-dragging'); setPos(posFromEvent(e)); e.preventDefault(); };
     const onMove = (e) => { if (!active) return; setPos(posFromEvent(e)); e.preventDefault(); };
-    const onUp = () => { active = false; };
+    const onUp = () => { active = false; divider.classList.remove('is-dragging'); };
 
     divider.addEventListener('mousedown', onDown);
     window.addEventListener('mousemove', onMove, { passive: false });

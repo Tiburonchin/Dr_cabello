@@ -72,11 +72,29 @@
                 <div class="compare__text">
                     <h2 class="section__title"><?php echo htmlspecialchars($tr['comparador_h2'] ?? 'Tratamiento y resultados'); ?></h2>
                     <p class="muted"><?php echo htmlspecialchars($tr['comparador_p'] ?? 'Abordamos la caída capilar con un plan integral: evaluamos la causa, definimos la técnica adecuada y acompañamos tu recuperación.'); ?></p>
-                    <ul class="list">
-                        <li><?php echo htmlspecialchars($tr['comparador_li1'] ?? 'Evaluación y diagnóstico precisos de la alopecia'); ?></li>
-                        <li><?php echo htmlspecialchars($tr['comparador_li2'] ?? 'Solución personalizada (FUE/DHI, PRP y terapias combinadas)'); ?></li>
-                        <li><?php echo htmlspecialchars($tr['comparador_li3'] ?? 'Beneficios: mayor densidad, naturalidad y confianza'); ?></li>
-                    </ul>
+                    <div class="compare__steps">
+                        <div class="step-card">
+                            <div class="step-card__number">1</div>
+                            <div class="step-card__body">
+                                <h4 class="step-card__title"><?php echo htmlspecialchars($tr['comparador_step1_h'] ?? 'Diagnóstico'); ?></h4>
+                                <p class="step-card__text"><?php echo htmlspecialchars($tr['comparador_step1_p'] ?? 'Evaluación y diagnóstico precisos de la alopecia.'); ?></p>
+                            </div>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-card__number">2</div>
+                            <div class="step-card__body">
+                                <h4 class="step-card__title"><?php echo htmlspecialchars($tr['comparador_step2_h'] ?? 'Solución'); ?></h4>
+                                <p class="step-card__text"><?php echo htmlspecialchars($tr['comparador_step2_p'] ?? 'Técnicas personalizadas (FUE/DHI, PRP) para tu caso.'); ?></p>
+                            </div>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-card__number">3</div>
+                            <div class="step-card__body">
+                                <h4 class="step-card__title"><?php echo htmlspecialchars($tr['comparador_step3_h'] ?? 'Resultados'); ?></h4>
+                                <p class="step-card__text"><?php echo htmlspecialchars($tr['comparador_step3_p'] ?? 'Mayor densidad, naturalidad y recuperación de confianza.'); ?></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="compare__media">
                     <div class="ba" data-compare aria-label="Comparador de resultados">
