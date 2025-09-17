@@ -17,7 +17,12 @@
 
     <main>
         <!-- Hero_section -->
-        <section id="inicio" class="section hero hero--bg">
+        <section id="inicio" class="section hero hero-slider">
+            <div class="hero-slider__slides">
+                <div class="hero-slider__slide" style="background-image: url('assets/img/hero_section.jpg');"></div>
+                <div class="hero-slider__slide" style="background-image: url('assets/img/hero_section_1.jpg');"></div>
+                <div class="hero-slider__slide" style="background-image: url('assets/img/hero_section_2.jpg');"></div>
+            </div>
             <div class="container hero__content">
                 <div class="hero__text reveal">
                     <h1 class="hero__title">
@@ -46,6 +51,11 @@
                     </div>
                 </div>
             </div>
+            <div class="hero-slider__nav">
+                <button class="hero-slider__button hero-slider__button--prev">&lt;</button>
+                <button class="hero-slider__button hero-slider__button--next">&gt;</button>
+            </div>
+            <div class="hero-slider__pagination"></div>
         </section>
 
         <!-- Ribbon under hero -->
@@ -315,6 +325,7 @@
     <script src="assets/js/parallax-gallery.js"></script>
     <script src="assets/js/utils.js"></script>
     <script src="assets/js/compare.js"></script>
+    <script src="assets/js/hero-slider.js"></script>
         <script type="application/ld+json">
         {
             "@context": "https://schema.org",
