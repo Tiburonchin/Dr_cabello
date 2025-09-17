@@ -80,6 +80,65 @@
             </div>
         </section>
 
+        <!-- Galería Parallax Sticky -->
+        <section id="galeria" class="section parallax-gallery reveal" aria-label="Galería con paralaje">
+            <div class="pg-wrap">
+                <div class="pg__sticky">
+                    <!-- Mensaje centrado -->
+                    <div class="pg__center" aria-hidden="false">
+                        <h3>¡Aquí inicia tu cambio!</h3>
+                    </div>
+
+                    <!-- Columnas de imágenes con diferentes velocidades -->
+                    <div class="pg" role="group" aria-label="Galería de imágenes en columnas">
+                        <div class="pg__col" data-pg-speed="0.8">
+                            <div class="pg__track">
+                                <figure class="pg__item" aria-label="Galería 1">
+                                    <img src="assets/img/seccion2/img4.png" alt="Tratamiento capilar — imagen 1" loading="lazy" />
+                                </figure>
+                                <figure class="pg__item" aria-label="Galería 2">
+                                    <img src="assets/img/seccion2/img5.png" alt="Tratamiento capilar — imagen 2" loading="lazy" />
+                                </figure>
+                            </div>
+                        </div>
+
+                        <div class="pg__col" data-pg-speed="0.6">
+                            <div class="pg__track">
+                                <figure class="pg__item" aria-label="Galería 3">
+                                    <img src="assets/img/seccion2/img6.png" alt="Tratamiento capilar — imagen 3" loading="lazy" />
+                                </figure>
+                                <figure class="pg__item" aria-label="Galería 4">
+                                    <img src="assets/img/seccion2/img7.png" alt="Tratamiento capilar — imagen 4" loading="lazy" />
+                                </figure>
+                            </div>
+                        </div>
+
+                        <div class="pg__col" data-pg-speed="1.0">
+                            <div class="pg__track">
+                                <figure class="pg__item" aria-label="Galería 5">
+                                    <img src="assets/img/seccion2/img8.png" alt="Tratamiento capilar — imagen 5" loading="lazy" />
+                                </figure>
+                                <figure class="pg__item" aria-label="Galería 6">
+                                    <img src="assets/img/seccion2/img15.png" alt="Tratamiento capilar — imagen 6" loading="lazy" />
+                                </figure>
+                            </div>
+                        </div>
+
+                        <div class="pg__col" data-pg-speed="0.9">
+                            <div class="pg__track">
+                                <figure class="pg__item" aria-label="Galería 7">
+                                    <img src="assets/img/seccion2/img6 (1).png" alt="Tratamiento capilar — imagen 7" loading="lazy" />
+                                </figure>
+                                <figure class="pg__item" aria-label="Galería 8">
+                                    <img src="assets/img/seccion2/img4.png" alt="Tratamiento capilar — imagen 8" loading="lazy" />
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         
 
         <!-- Resultados -->
@@ -253,6 +312,7 @@
     <script src="assets/js/theme.js"></script>
     <script src="assets/js/nav_header.js"></script>
     <script src="assets/js/animations.js"></script>
+    <script src="assets/js/parallax-gallery.js"></script>
     <script src="assets/js/utils.js"></script>
     <script src="assets/js/compare.js"></script>
         <script type="application/ld+json">

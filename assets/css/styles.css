@@ -426,7 +426,7 @@ html[data-theme="light"] .badge { border-color: transparent; }
     place-items: center;
     color: var(--text-light);
     isolation: isolate;
-    background-image: url('../img/hero_section.jpg');
+    background-image: url('../img/hero_section_1.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -472,7 +472,14 @@ html[data-theme="light"] .hero--bg::after {
 .hero--bg .hero__cta, .hero--bg .hero__badges { justify-content: center; }
 
 /* Typed effect styles */
-.typed-wrapper { display: inline-flex; align-items: center; gap: 6px; margin-left: 8px; }
+.typed-wrapper { 
+    display: inline-flex; 
+    align-items: baseline; /* keep baseline aligned with the sentence */
+    gap: 6px; 
+    margin-left: 8px; 
+    vertical-align: baseline; 
+    line-height: 1; /* avoid contributing extra line-box height */
+}
 .typed-word {
     position: relative;
     display: inline-block;
@@ -480,7 +487,10 @@ html[data-theme="light"] .hero--bg::after {
     border-radius: 10px; /* más rectangular, menos pill */
     background: linear-gradient(90deg, rgba(0,143,204,0.22), rgba(1,48,167,0.22));
     color: #ffffff;
-    line-height: 1.1;
+    line-height: 1; /* stabilize capsule height while typing */
+    white-space: nowrap; /* prevent wrapping during typing */
+    vertical-align: baseline; /* keep baseline steady */
+    min-height: calc(1em + 12px); /* reserve height: glyph (1em) + padding (6+6px) under border-box */
     box-shadow: 0 6px 18px rgba(0,143,204,0.22);
 }
 html[data-theme="light"] .typed-word {
@@ -488,9 +498,130 @@ html[data-theme="light"] .typed-word {
     color: #ffffff;
     box-shadow: 0 6px 18px rgba(0,143,204,0.20);
 }
-.typed-cursor { display: inline-block; opacity: 0.9; margin-left: 2px; }
+.typed-cursor { display: inline-block; opacity: 0.9; margin-left: 2px; line-height: 1; vertical-align: baseline; }
 .typed-cursor.is-blinking { animation: blink 1s step-end infinite; }
 @keyframes blink { 50% { opacity: 0; } }
+
+/*
+========================================
+    PARALLAX GALLERY (Sticky Section)
+========================================
+*/
+.parallax-gallery {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(180deg, var(--bg-gradient-mid), var(--bg-gradient-end));
+    color: var(--text-primary);
+    padding: 0; /* full bleed */
+}
+.pg-wrap { position: relative; width: 100%; height: 220vh; }
+/* Sticky container fills viewport while inner content scrolls */
+.pg__sticky {
+    position: sticky;
+    top: calc(var(--header-offset));
+    min-height: calc(100vh - var(--header-offset));
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+.pg {
+    position: absolute;
+    inset: 0;
+    right: 3.5%;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: clamp(14px, 2.2vw, 28px);
+    padding: clamp(12px, 2vw, 24px);
+    overflow: hidden;
+    z-index: 1; /* debajo del texto central */
+}
+.pg__col {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(12px, 2vw, 20px);
+    width: clamp(200px, 20vw, 320px);
+    will-change: transform;
+    transform: translate3d(0, var(--pg-y, 0), 0);
+}
+.pg__item {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/4; /* vertical cards */
+    overflow: hidden;
+    border-radius: 16px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-main);
+}
+.pg__item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* keep images visually centered even on extreme aspect ratios */
+.pg__item img {
+    object-position: center center;
+    opacity: 0.8; /* slightly transparent for harmony */
+    transition: opacity .2s ease;
+}
+.pg__item:hover img { opacity: 0.94; }
+
+/* Track interior para columnas con repetición infinita */
+.pg__track {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(12px, 2vw, 20px);
+    will-change: transform;
+}
+
+/* Centered callout */
+.pg__center {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+    z-index: 2; /* por encima de las imágenes */
+}
+.pg__center h3 {
+    margin: 0;
+    font-family: var(--font-secondary);
+    font-weight: 800;
+    font-size: clamp(28px, 4.8vw, 56px);
+    color: var(--text-light);
+    text-shadow: 0 8px 30px rgba(0,0,0,0.35);
+    opacity: var(--pg-center-a, 0.08);
+    transform: translate3d(0, var(--pg-center-y, 12px), 0);
+    transition: opacity .3s ease, transform .3s ease;
+}
+html[data-theme="light"] .pg__center h3 { color: var(--text-primary); text-shadow: none; }
+
+/* Reduced motion: keep static */
+@media (prefers-reduced-motion: reduce) {
+    .pg__col { transform: none !important; }
+    .pg__center h3 { opacity: 1; transform: none; }
+}
+
+/* Responsive tweaks */
+@media (max-width: 1100px) {
+    .pg__col { width: clamp(180px, 24vw, 280px); }
+}
+@media (max-width: 900px) {
+    .pg { gap: clamp(12px, 3vw, 20px);}
+    .pg__col { width: min(44vw, 260px); right: 10%;}
+}
+@media (max-width: 640px) {
+    .pg__col { width: 46vw; right: 10%; }
+    .pg-wrap { height: 170vh; }
+}
+
+/* Extra-small phones: focus on two columns for clarity */
+@media (max-width: 480px) {
+    .pg { width: min(620px, 100%); }
+    .pg__col { width: 48vw; }
+    /* hide extra columns beyond the first two to avoid overcrowding */
+    .pg__col:nth-child(n+3) { display: none; }
+    .pg-wrap { height: 150vh; }
+}
 
 /*
 ========================================

@@ -118,8 +118,8 @@
 
     const lang = (document.documentElement.getAttribute('lang') || 'es').toLowerCase();
     const words = lang.startsWith('en')
-        ? ['strong', 'natural', 'youthful', 'healthy']
-        : ['fuerte', 'natural', 'juvenil', 'saludable'];
+        ? ['strong', 'natural', 'youthful', 'reliable']
+        : ['fuerte', 'natural', 'juvenil', 'confiable'];
 
     const typeSpeed = 140; // ms per character when typing (ligeramente más lento)
     const deleteSpeed = 90; // ms per character when deleting
@@ -164,3 +164,5 @@
         cursor.classList.add('is-blinking');
     }
 })();
+
+// Sticky Parallax Gallery behavior moved to assets/js/parallax-gallery.js
