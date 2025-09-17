@@ -109,3 +109,58 @@
 
     start();
 })();
+
+// Hero typing effect for dynamic word (ES/EN)
+(function() {
+    const el = document.getElementById('typedWord');
+    const cursor = document.querySelector('.typed-cursor');
+    if (!el) return;
+
+    const lang = (document.documentElement.getAttribute('lang') || 'es').toLowerCase();
+    const words = lang.startsWith('en')
+        ? ['strong', 'natural', 'youthful', 'healthy']
+        : ['fuerte', 'natural', 'juvenil', 'saludable'];
+
+    const typeSpeed = 140; // ms per character when typing (ligeramente más lento)
+    const deleteSpeed = 90; // ms per character when deleting
+    const holdTime = 1300; // ms to hold full word before deleting
+    let wordIndex = 0;
+    let charIndex = 0;
+    let typing = true;
+
+    const setText = (t) => { el.textContent = t; };
+
+    const next = () => (wordIndex = (wordIndex + 1) % words.length);
+
+    const tick = () => {
+        const current = words[wordIndex];
+        if (typing) {
+            charIndex++;
+            setText(current.slice(0, charIndex));
+            if (charIndex < current.length) {
+                setTimeout(tick, typeSpeed);
+            } else {
+                typing = false;
+                setTimeout(tick, holdTime);
+            }
+        } else {
+            charIndex--;
+            setText(current.slice(0, Math.max(0, charIndex)));
+            if (charIndex > 0) {
+                setTimeout(tick, deleteSpeed);
+            } else {
+                typing = true;
+                next();
+                setTimeout(tick, typeSpeed);
+            }
+        }
+    };
+
+    // Small initial delay for nicer entrance
+    setTimeout(tick, 350);
+
+    // Blink cursor if present
+    if (cursor) {
+        cursor.classList.add('is-blinking');
+    }
+})();

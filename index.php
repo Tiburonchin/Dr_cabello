@@ -20,7 +20,21 @@
         <section id="inicio" class="section hero hero--bg">
             <div class="container hero__content">
                 <div class="hero__text reveal">
-                    <h1><?php echo htmlspecialchars($tr['hero_h1']); ?></h1>
+                    <h1 class="hero__title">
+                        <?php if (($lang ?? 'es') === 'es'): ?>
+                            Recupera tu confianza con un cabello más
+                            <span class="typed-wrapper">
+                                <span id="typedWord" class="typed-word" aria-live="polite">saludable</span>
+                                <span class="typed-cursor" aria-hidden="true">_</span>
+                            </span>
+                        <?php else: ?>
+                            Restore your confidence with hair that's
+                            <span class="typed-wrapper">
+                                <span id="typedWord" class="typed-word" aria-live="polite">healthy</span>
+                                <span class="typed-cursor" aria-hidden="true">_</span>
+                            </span>
+                        <?php endif; ?>
+                    </h1>
                     <div class="hero__cta">
                         <a href="#contacto" class="btn btn--primary"><?php echo htmlspecialchars($tr['cta1']); ?></a>
                         <a href="#servicios" class="btn btn--ghost"><?php echo htmlspecialchars($tr['cta2']); ?></a>

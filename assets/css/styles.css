@@ -471,6 +471,27 @@ html[data-theme="light"] .hero--bg::after {
 .hero--bg .hero__text p { color: #e9eef6; opacity: .95; }
 .hero--bg .hero__cta, .hero--bg .hero__badges { justify-content: center; }
 
+/* Typed effect styles */
+.typed-wrapper { display: inline-flex; align-items: center; gap: 6px; margin-left: 8px; }
+.typed-word {
+    position: relative;
+    display: inline-block;
+    padding: 6px 14px; /* un poco más de largo */
+    border-radius: 10px; /* más rectangular, menos pill */
+    background: linear-gradient(90deg, rgba(0,143,204,0.22), rgba(1,48,167,0.22));
+    color: #ffffff;
+    line-height: 1.1;
+    box-shadow: 0 6px 18px rgba(0,143,204,0.22);
+}
+html[data-theme="light"] .typed-word {
+    background: linear-gradient(90deg, rgba(0,143,204,0.30), rgba(1,48,167,0.28));
+    color: #ffffff;
+    box-shadow: 0 6px 18px rgba(0,143,204,0.20);
+}
+.typed-cursor { display: inline-block; opacity: 0.9; margin-left: 2px; }
+.typed-cursor.is-blinking { animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
 /*
 ========================================
   RIBBON
