@@ -75,18 +75,29 @@
     let ticking = false;
     let smoothed = 0; // smoothed progress for easing
     let hasInit = false;
+    let didInitialPaint = false; // ensure we only pre-position once
     const render = () => {
         ticking = false;
-        const pRaw = progress();
+    const pRaw = progress();
         // Clamp negative progress to 0 so we pre-position before sticky engages
-        const p = pRaw < 0 ? 0 : pRaw;
+    const isActive = pRaw >= 0;
+    const p = (!hasInit && pRaw < 0) ? 0 : pRaw;
         // Ease progress on mobile to avoid aggressive jumps
         const isMobile = window.matchMedia('(max-width: 680px)').matches;
         const SMOOTH = isMobile ? 0.12 : 0.22;
         const EPS = 0.0015;
         if (!hasInit) { smoothed = p; hasInit = true; }
-        smoothed += (p - smoothed) * SMOOTH;
+        if (isActive) {
+            smoothed += (p - smoothed) * SMOOTH;
+        } else if (!hasInit) {
+            // Before first paint, adopt initial p (0) without easing
+            smoothed = p;
+        }
         const sp = smoothed;
+        // Only transform when active or on the very first paint
+        if (!isActive && didInitialPaint) {
+            return;
+        }
         // Columns move with modular wrapping of track content
         cols.forEach((col, idx) => {
             const base = Math.abs(parseFloat(col.getAttribute('data-pg-speed') || '0.8'));
@@ -109,7 +120,7 @@
             if (track.style.visibility === 'hidden') track.style.visibility = 'visible';
         });
 
-        if (center) {
+        if (center && (isActive || !didInitialPaint)) {
             // Fade in towards center (p≈0.5) and out towards edges
             const d = Math.abs((sp - 0.5) * 2); // 1 en extremos, 0 en centro
             const a = 1 - Math.min(1, d);
@@ -119,9 +130,10 @@
         }
 
         // Continue easing until we reach the target progress
-        if (Math.abs(p - sp) > EPS) {
+        if (isActive && Math.abs(p - sp) > EPS) {
             requestAnimationFrame(render);
         }
+        didInitialPaint = true;
     };
 
     const onScroll = () => {
