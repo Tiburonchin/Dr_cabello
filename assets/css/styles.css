@@ -426,7 +426,8 @@ html[data-theme="light"] .badge { border-color: transparent; }
     place-items: center;
     color: var(--text-light);
     isolation: isolate;
-    background-image: url('../img/hero_section_1.jpg');
+    /* base fallback background (first frame) */
+    background-image: url('../img/hero_section.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -470,6 +471,41 @@ html[data-theme="light"] .hero--bg::after {
 .hero--bg .hero__text h1 { text-shadow: 0 4px 24px rgba(0,0,0,.45); }
 .hero--bg .hero__text p { color: #e9eef6; opacity: .95; }
 .hero--bg .hero__cta, .hero--bg .hero__badges { justify-content: center; }
+
+/*
+   HERO BACKGROUND SLIDESHOW (CSS-only crossfade)
+   - Uses three absolutely positioned layers with staggered opacity animation
+   - Keeps existing ::before/::after overlays intact (they sit above via z-index)
+*/
+.hero__bg-layer {
+    position: absolute;
+    inset: 0;
+    z-index: -2; /* below overlays (::before/::after at -1) but above page bg */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    opacity: 0;
+    animation: hero-fade 21s infinite ease-in-out;
+}
+.hero__bg--1 { background-image: url('../img/hero_section.jpg'); animation-delay: 0s; }
+.hero__bg--2 { background-image: url('../img/hero_section_1.jpg'); animation-delay: 7s; }
+.hero__bg--3 { background-image: url('../img/hero_section_2.jpg'); animation-delay: 14s; }
+
+@keyframes hero-fade {
+    /* Each slide visible ~33% with smooth in/out, total cycle 21s (7s per image) */
+    0%   { opacity: 0; }
+    6%   { opacity: 1; }
+    27%  { opacity: 1; }
+    33%  { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .hero__bg-layer { animation: none; opacity: 0; }
+    .hero__bg--1 { opacity: 1; }
+}
 
 /* Typed effect styles */
 .typed-wrapper { 

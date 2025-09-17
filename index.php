@@ -10,6 +10,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/styles.css" />
+    <!-- Preload hero images for smooth slideshow -->
+    <link rel="preload" as="image" href="assets/img/hero_section.jpg" />
+    <link rel="preload" as="image" href="assets/img/hero_section_1.jpg" />
+    <link rel="preload" as="image" href="assets/img/hero_section_2.jpg" />
     <link rel="canonical" href="/" />
 </head>
 <body>
@@ -18,6 +22,10 @@
     <main>
         <!-- Hero_section -->
         <section id="inicio" class="section hero hero--bg">
+            <!-- Background slideshow layers (aria-hidden for accessibility) -->
+            <div class="hero__bg-layer hero__bg--1" aria-hidden="true"></div>
+            <div class="hero__bg-layer hero__bg--2" aria-hidden="true"></div>
+            <div class="hero__bg-layer hero__bg--3" aria-hidden="true"></div>
             <div class="container hero__content">
                 <div class="hero__text reveal">
                     <h1 class="hero__title">
