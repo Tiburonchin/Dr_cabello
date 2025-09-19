@@ -109,7 +109,8 @@ if (navToggle && navMenu) {
 	(function() {
 		const container = document.getElementById('ribbonText');
 		if (!container) return;
-		const phrase = 'LISTO PARA TU CAMBIO?';
+		const phrase = (container.getAttribute('data-phrase') || container.getAttribute('aria-label') || 'LISTO PARA TU CAMBIO?').toString();
+		const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 		const chars = Array.from(phrase);
 		container.innerHTML = '';
 		chars.forEach((ch, i) => {
@@ -176,7 +177,7 @@ if (navToggle && navMenu) {
 
 			// smooth towards momentum-adjusted target
 			smoothed += (targetWithMomentum - smoothed) * SMOOTH;
-			const p = easeOutCubic(smoothed);
+			const p = prefersReduced ? 1 : easeOutCubic(smoothed);
 			render(p);
 			if (active || Math.abs(target - smoothed) > EPS || Math.abs(momentum) > EPS) {
 				requestAnimationFrame(tick);

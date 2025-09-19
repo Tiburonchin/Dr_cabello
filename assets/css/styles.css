@@ -708,6 +708,10 @@ html[data-theme="light"] .ribbon__text { color: var(--text-primary); }
     align-items: center;
     justify-content: center;
     gap: 0.16em;
+    flex-wrap: wrap; /* allow wrapping on small screens */
+    max-width: 100%;
+    text-align: center;
+    line-height: 1.05;
     color: #eaf2fb;
     font-weight: 700;
     font-size: clamp(30px, 7.6vw, 64px);
@@ -723,6 +727,17 @@ html[data-theme="light"] .ribbon__chars { color: var(--text-primary); }
     0%   { background-position: 0% 0; }
     50%  { background-position: 100% 0; }
     100% { background-position: 0% 0; }
+}
+
+/* Ribbon responsiveness */
+@media (max-width: 768px) {
+    .ribbon__inner { padding: clamp(18px, 5.5vw, 30px) 16px; }
+    .ribbon__chars { font-size: clamp(22px, 8.5vw, 36px); letter-spacing: 0.02em; gap: 0.12em; }
+    .ribbon__glow { background: radial-gradient(1000px 220px at var(--x, 0%) 50%, rgba(18,215,255,0.24), transparent 60%); }
+}
+@media (max-width: 480px) {
+    .ribbon__inner { padding: clamp(20px, 7vw, 36px) 16px; }
+    .ribbon__chars { font-size: clamp(18px, 9.5vw, 25px); letter-spacing: 0.015em; gap: 0.08em; }
 }
 
 /*

@@ -62,7 +62,7 @@
         <section class="ribbon reveal" aria-label="Aviso destacado">
             <div class="container ribbon__inner">
                 <div class="ribbon__glow" aria-hidden="true"></div>
-                <div id="ribbonText" class="ribbon__chars" aria-label="LISTO PARA TU CAMBIO?"></div>
+                <div id="ribbonText" class="ribbon__chars" aria-label="<?php echo htmlspecialchars($tr['ribbon_text'] ?? 'LISTO PARA TU CAMBIO?'); ?>" data-phrase="<?php echo htmlspecialchars($tr['ribbon_text'] ?? 'LISTO PARA TU CAMBIO?'); ?>"></div>
             </div>
         </section>
 
